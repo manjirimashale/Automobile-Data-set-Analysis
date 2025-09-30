@@ -1,0 +1,467 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Automobile Dataset — Full Project Report & Interactive Dashboard</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --bg:#f5f7fb;
+      --card:#ffffff;
+      --muted:#475569;
+      --accent1:#0ea5a4; /* Teal/Cyan */
+      --accent2:#7c3aed; /* Purple */
+      --faintblue:#3b82f6; /* Faint blue for section titles and certificate text */
+    }
+
+    body {
+      font-family:Inter,system-ui,Helvetica,Arial;
+      margin:0;
+      background:var(--bg);
+      color:#0f172a;
+      line-height:1.45;
+    }
+
+    header {
+      background:linear-gradient(90deg,var(--accent1),var(--accent2));
+      color:white;
+      padding:20px 24px;
+    }
+
+    .container {
+      max-width:1100px;
+      margin:20px auto;
+      padding:0 18px;
+    }
+
+    h1 { margin:0; font-size:20px; }
+    .card {
+      background:var(--card);
+      border-radius:10px;
+      padding:14px;
+      margin-bottom:14px;
+      box-shadow:0 6px 18px rgba(12,12,20,0.05);
+    }
+
+    /* Section Titles in Faint Blue */
+    section.card > strong {
+      color: var(--faintblue);
+    }
+
+    .small { font-size:13px; color:var(--muted); }
+    .flex { display:flex; gap:12px; align-items:center; }
+    .slicer { display:flex; gap:8px; align-items:center; flex-wrap:wrap; margin-top:8px; }
+    button.sbtn {
+      padding:8px 12px;
+      border-radius:8px;
+      border:1px solid #e6eef7;
+      background:white;
+      cursor:pointer;
+      transition: background 0.2s, border-color 0.2s;
+    }
+    button.sbtn:hover {
+        background: #f0f4f9;
+    }
+    button.sbtn.active {
+      background:var(--accent2);
+      color:white;
+      border-color:var(--accent2);
+    }
+    .grid2 { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+    table { width:100%; border-collapse:collapse; margin-top:10px; font-size:14px; }
+    th, td { padding:8px; border-bottom:1px solid #eef2f7; text-align:left; }
+    
+    footer { font-size:13px; color:var(--muted); text-align:center; margin:18px; }
+
+    @media(max-width:900px){ .grid2{grid-template-columns:1fr} }
+
+    /* Certificate styles */
+    .cert-container {
+      background: white;
+      max-width: 700px;
+      margin: 40px auto;
+      padding: 30px 30px 40px;
+      border-radius: 10px;
+      box-shadow: 0 6px 18px rgba(12, 12, 20, 0.05);
+      color: #1e293b;
+      font-weight: 600;
+      text-align: center;
+      font-family: Inter, system-ui, Helvetica, Arial, sans-serif;
+    }
+
+    .cert-title { font-size:28px; font-weight:700; margin-bottom:8px; color: var(--faintblue); }
+    .cert-subtitle { font-size:18px; margin-bottom:20px; color: var(--faintblue); }
+    .cert-project-name { font-size:20px; margin:15px 0 30px 0; color: var(--faintblue); }
+    .cert-text { font-weight:600; margin-bottom:15px; }
+    .cert-container table.student-table {
+      width:100%; border-collapse:collapse; margin-bottom:40px; color:#1e293b;
+    }
+    .cert-container table.student-table th,
+    .cert-container table.student-table td {
+      padding:10px 8px;
+      border:1px solid #ddd;
+      text-align:center;
+      font-weight:600;
+    }
+    .cert-container > strong { display:block; margin-bottom:12px; font-size:16px; }
+    .guide-name { font-size:18px; font-weight:600; margin-top:10px; color: var(--faintblue); }
+    .signatures {
+      display:flex;
+      justify-content:center;
+      gap:60px;
+      margin-top:40px;
+      flex-wrap:wrap;
+    }
+    .signature-block {
+      text-align:center;
+      font-weight:600;
+      font-size:14px;
+      color:#1e293b;
+      min-width:120px;
+    }
+    .signature-block span {
+      display:block;
+      width:140px;
+      margin:0 auto 10px auto;
+      border-bottom:1.5px solid #1e293b;
+      height:0;
+    }
+  </style>
+
+</head>
+<body>
+  <header>
+    <div class="container">
+      <h1>Automobile Dataset — Full Project Report & Interactive Dashboard</h1>
+      <div class="small">Complete microproject: analysis, visuals, methodology, insights, and certificate</div>
+    </div>
+  </header>
+
+  <main class="container">
+
+    <section class="card">
+      <strong>Project Overview</strong>
+      <div class="small" style="margin-top:8px">
+        Objective: Explore and summarize automobile dataset characteristics.
+        Use Pivot Tables in Microsoft Excel to categorize and group data.
+        Apply Slicers to dynamically filter records for better interaction.
+        Build an interactive HTML dashboard for visualization.
+        Duration: 2 weeks.
+      </div>
+    </section>
+
+    <section class="card">
+      <strong>Introduction</strong>
+      <div class="small" style="margin-top:8px">
+        The automobile industry produces a vast range of vehicles with varying specifications such as fuel type, engine power, mileage, and cylinder count. Understanding these characteristics is crucial for analyzing performance, efficiency, and market trends. This project explores an automobile dataset to extract insights using Excel pivot tables, slicers, and an interactive HTML dashboard.
+      </div>
+    </section>
+
+    <section class="card">
+      <strong>Data Description</strong>
+      <div class="small" style="margin-top:8px">
+        The dataset <code>car_specs.csv</code> includes columns: Make, Fuel Type, Horsepower, Mileage, Number of Cylinders.
+      </div>
+    </section>
+
+    <section class="card">
+      <strong>Data Quality & Sources</strong>
+      <div class="small" style="margin-top:8px">
+        Demo dataset is synthetic; real datasets should validate sources, units, and handle outliers.
+      </div>
+    </section>
+
+    <section class="card">
+      <strong>Methodology</strong>
+      <div class="small" style="margin-top:8px">
+        Steps:
+        <ol>
+          <li><strong>Dataset Collection:</strong> Collected attributes like Make, Fuel Type, Horsepower, Mileage, Cylinders, Engine Size, and Price.</li>
+          <li><strong>Data Cleaning & Preparation:</strong> Handled missing/incorrect values and standardized units.</li>
+          <li><strong>Exploratory Data Analysis:</strong> Used Pivot Tables to summarize data by fuel type, cylinders, etc.</li>
+          <li><strong>Interactive Filtering:</strong> Applied slicers to filter by fuel type, cylinders, and year.</li>
+          <li><strong>Dashboard Development:</strong> Built HTML/JS dashboard using Chart.js for dynamic charts.</li>
+          <li><strong>Insight Generation:</strong> Compared performance and efficiency of traditional vs electric vehicles.</li>
+          <li><strong>Report Preparation:</strong> Compiled findings, visuals, and certificate.</li>
+          <li><strong>Timeline:</strong> Week 1: Cleaning, pivot tables; Week 2: Dashboard and report.</li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="card">
+      <strong>The Story Behind the Numbers</strong>
+      <div class="small" style="margin-top:8px">
+        Engine design choices (more cylinders, higher horsepower) trade off with fuel efficiency. Electric drivetrains appear more efficient in MPG-equivalent. The dashboard compares traditional and electric vehicles side-by-side.
+      </div>
+    </section>
+
+    <section class="card">
+      <strong>Data Analysis & Key Findings</strong>
+      <div class="small" style="margin-top:8px">
+        Key observations:
+        <ul>
+          <li>Petrol vehicles dominate; electric vehicles show higher MPG-equivalent.</li>
+          <li>Higher horsepower often correlates with lower mileage.</li>
+          <li>4-cylinder cars balance performance and efficiency; 6+ cylinders reduce fuel efficiency.</li>
+          <li>Most cars range 20–35 MPG; electric vehicles are outliers.</li>
+          <li>Slicer analysis highlights efficiency trends by cylinders and fuel type.</li>
+          <li>Trade-offs exist between performance and efficiency, guiding consumer and designer decisions.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="card">
+      <strong>Filter: Number of Cylinders</strong>
+      <div class="slicer" id="slicerButtons"></div>
+    </section>
+
+    <section class="card">
+      <strong>Visualization Gallery</strong>
+      <div class="small" style="margin-top:8px">Charts update when cylinder filter changes.</div>
+      <div class="grid2" style="margin-top:12px">
+        <div class="card"><div class="small">Average Mileage by Fuel Type</div><canvas id="avgMileageChart" height="220"></canvas></div>
+        <div class="card"><div class="small">Mileage Distribution by Cylinders (avg)</div><canvas id="mileageByCyl" height="220"></canvas></div>
+        <div class="card"><div class="small">HP vs Mileage (scatter)</div><canvas id="hpScatter" height="220"></canvas></div>
+        <div class="card"><div class="small">Count by Fuel Type</div><canvas id="countFuel" height="220"></canvas></div>
+      </div>
+    </section>
+
+    <section class="card">
+      <strong>Pivot-style Table: Average Mileage by Fuel Type</strong>
+      <div class="small" style="margin-top:6px">Rows = Fuel Type; Values = Average(Mileage)</div>
+      <table id="pivotTable"><thead><tr><th>Fuel Type</th><th>Average Mileage</th></tr></thead><tbody></tbody></table>
+    </section>
+
+    <section class="card">
+      <strong>Key Statistical Insights</strong>
+      <ul class="small" id="keyStats"><li>—</li><li>—</li><li>—</li></ul>
+    </section>
+
+    <section class="card">
+      <strong>Data Table (sample)</strong>
+      <div style="max-height:260px;overflow:auto;margin-top:8px">
+        <table id="dataTable"><thead><tr><th>Make</th><th>Fuel Type</th><th>Horsepower</th><th>Mileage</th><th>Cylinders</th></tr></thead><tbody></tbody></table>
+      </div>
+    </section>
+
+    <section class="card">
+      <strong>Conclusions & Key Insights</strong>
+      <ol class="small" id="conclusionsList"><li>—</li><li>—</li><li>—</li></ol>
+    </section>
+
+    <section class="card">
+      <strong>Implications for the Future</strong>
+      <div class="small" style="margin-top:8px">
+        Future studies should include emissions, cost-per-mile, and battery lifecycle impacts as electric vehicles become more common.
+      </div>
+    </section>
+
+    <section class="card">
+      <strong>Learning Outcomes</strong>
+      <ul class="small">
+        <li>Understand and build pivot tables.</li>
+        <li>Use slicers to filter datasets interactively.</li>
+        <li>Interpret statistics and visualize effectively.</li>
+      </ul>
+    </section>
+
+    <section class="card">
+      <strong>Project Certificate: Interactive Data Exploration</strong>
+      <div class="cert-container">
+        <div class="cert-title">CERTIFICATE OF COMPLETION</div>
+        <div class="cert-subtitle">MICRO PROJECT REPORT</div>
+        <div class="cert-text">This is to certify that the Micro Project report On</div>
+        <div class="cert-project-name">Interactive Data Exploration (Automobile Dataset)</div>
+        <div class="cert-text" style="margin-bottom: 15px;">
+          Has successfully completed in <strong>Data Analytics (315326)</strong> course by the Student of Fifth Semester Diploma in IT for the Academic Year <strong>2025-26</strong> as per <strong>MSBTE K-Scheme</strong>.
+        </div>
+        <strong style="display: block; margin-bottom: 10px; font-size: 16px;">Submitted by</strong>
+        <table class="student-table">
+          <thead><tr><th>Sr. No.</th><th>Enrollment No.</th><th>Roll No.</th><th>Class</th><th>Name of the Student</th></tr></thead>
+          <tbody><tr><td>1</td><td>23212830510</td><td>3636</td><td>IF5K</td><td>Ms. Mashale Manjiri Malakari</td></tr></tbody>
+        </table>
+        <div style="margin-top: 40px; font-weight: 600; font-size: 16px; color: var(--faintblue);">Under the Guidance of</div>
+        <div class="guide-name">Mr. Akash Chatake (Subject Lecturer)</div>
+        <div class="signatures">
+          <div class="signature-block"><span></span>Mr. Akash S. Chatake<div class="guide-name">Guide</div></div>
+          <div class="signature-block"><span></span>Dr. Neeta S. Alange<div class="guide-name">HOD</div></div>
+          <div class="signature-block"><span></span>Prof. Dharane G.R.<div class="guide-name">Principal</div></div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="small card">Project Report & Interactive Dashboard</footer>
+
+  </main>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+// Data loaded from 'car_specs.xlsx - Car_Specs.csv' (50 records)
+// NOTE: Keys match the 'index.html' table headers: 'Fuel Type', 'Horsepower', 'Cyl'
+const data = [
+  {Make: 'Hyundai', 'Fuel Type': 'Petrol', Horsepower: 210, Mileage: 13.40, Cyl: 3},
+  {Make: 'Honda', 'Fuel Type': 'Petrol', Horsepower: 372, Mileage: 16.94, Cyl: 3},
+  {Make: 'Toyota', 'Fuel Type': 'Petrol', Horsepower: 189, Mileage: 18.11, Cyl: 4},
+  {Make: 'Toyota', 'Fuel Type': 'Diesel', Horsepower: 182, Mileage: 14.98, Cyl: 8},
+  {Make: 'Ford', 'Fuel Type': 'Petrol', Horsepower: 286, Mileage: 14.81, Cyl: 4},
+  {Make: 'Honda', 'Fuel Type': 'Diesel', Horsepower: 122, Mileage: 8.85, Cyl: 6},
+  {Make: 'Toyota', 'Fuel Type': 'CNG', Horsepower: 379, Mileage: 12.29, Cyl: 6},
+  {Make: 'Toyota', 'Fuel Type': 'Electric', Horsepower: 196, Mileage: 81.65, Cyl: 3},
+  {Make: 'Ford', 'Fuel Type': 'CNG', Horsepower: 105, Mileage: 8.92, Cyl: 4},
+  {Make: 'Honda', 'Fuel Type': 'CNG', Horsepower: 189, Mileage: 25.83, Cyl: 3},
+  {Make: 'BMW', 'Fuel Type': 'CNG', Horsepower: 395, Mileage: 22.68, Cyl: 8},
+  {Make: 'Honda', 'Fuel Type': 'CNG', Horsepower: 177, Mileage: 20.40, Cyl: 6},
+  {Make: 'Hyundai', 'Fuel Type': 'Petrol', Horsepower: 343, Mileage: 22.58, Cyl: 4},
+  {Make: 'Honda', 'Fuel Type': 'Electric', Horsepower: 169, Mileage: 115.58, Cyl: 8},
+  {Make: 'Hyundai', 'Fuel Type': 'Diesel', Horsepower: 98, Mileage: 11.58, Cyl: 6},
+  {Make: 'Toyota', 'Fuel Type': 'CNG', Horsepower: 207, Mileage: 7.32, Cyl: 8},
+  {Make: 'Tesla', 'Fuel Type': 'CNG', Horsepower: 325, Mileage: 15.91, Cyl: 4},
+  {Make: 'Hyundai', 'Fuel Type': 'Electric', Horsepower: 167, Mileage: 83.59, Cyl: 4},
+  {Make: 'Hyundai', 'Fuel Type': 'CNG', Horsepower: 368, Mileage: 13.99, Cyl: 8},
+  {Make: 'Honda', 'Fuel Type': 'Diesel', Horsepower: 116, Mileage: 21.12, Cyl: 8},
+  {Make: 'Chevrolet', 'Fuel Type': 'Petrol', Horsepower: 391, Mileage: 11.20, Cyl: 4},
+  {Make: 'Hyundai', 'Fuel Type': 'Electric', Horsepower: 198, Mileage: 93.76, Cyl: 3},
+  {Make: 'BMW', 'Fuel Type': 'CNG', Horsepower: 128, Mileage: 22.13, Cyl: 3},
+  {Make: 'Tesla', 'Fuel Type': 'CNG', Horsepower: 127, Mileage: 12.87, Cyl: 6},
+  {Make: 'Honda', 'Fuel Type': 'Electric', Horsepower: 284, Mileage: 113.53, Cyl: 3},
+  {Make: 'Ford', 'Fuel Type': 'Diesel', Horsepower: 390, Mileage: 14.47, Cyl: 3},
+  {Make: 'Hyundai', 'Fuel Type': 'Diesel', Horsepower: 261, Mileage: 23.25, Cyl: 4},
+  {Make: 'Tesla', 'Fuel Type': 'Petrol', Horsepower: 320, Mileage: 7.39, Cyl: 6},
+  {Make: 'Ford', 'Fuel Type': 'CNG', Horsepower: 99, Mileage: 12.82, Cyl: 4},
+  {Make: 'Tesla', 'Fuel Type': 'Petrol', Horsepower: 318, Mileage: 24.82, Cyl: 3},
+  {Make: 'Chevrolet', 'Fuel Type': 'Diesel', Horsepower: 313, Mileage: 26.94, Cyl: 4},
+  {Make: 'Honda', 'Fuel Type': 'CNG', Horsepower: 178, Mileage: 24.58, Cyl: 8},
+  {Make: 'Chevrolet', 'Fuel Type': 'Diesel', Horsepower: 274, Mileage: 26.90, Cyl: 6},
+  {Make: 'Hyundai', 'Fuel Type': 'CNG', Horsepower: 334, Mileage: 15.03, Cyl: 8},
+  {Make: 'Honda', 'Fuel Type': 'Diesel', Horsepower: 243, Mileage: 8.92, Cyl: 3},
+  {Make: 'Tesla', 'Fuel Type': 'Diesel', Horsepower: 73, Mileage: 9.42, Cyl: 4},
+  {Make: 'Hyundai', 'Fuel Type': 'Petrol', Horsepower: 104, Mileage: 26.11, Cyl: 4},
+  {Make: 'Chevrolet', 'Fuel Type': 'CNG', Horsepower: 333, Mileage: 13.26, Cyl: 3},
+  {Make: 'Hyundai', 'Fuel Type': 'Electric', Horsepower: 238, Mileage: 83.29, Cyl: 4},
+  {Make: 'Tesla', 'Fuel Type': 'Electric', Horsepower: 300, Mileage: 96.92, Cyl: 4},
+  {Make: 'BMW', 'Fuel Type': 'Diesel', Horsepower: 119, Mileage: 21.68, Cyl: 3},
+  {Make: 'Ford', 'Fuel Type': 'Electric', Horsepower: 219, Mileage: 110.55, Cyl: 8},
+  {Make: 'Toyota', 'Fuel Type': 'Petrol', Horsepower: 276, Mileage: 23.06, Cyl: 3},
+  {Make: 'Chevrolet', 'Fuel Type': 'Petrol', Horsepower: 168, Mileage: 11.80, Cyl: 4},
+  {Make: 'BMW', 'Fuel Type': 'Diesel', Horsepower: 163, Mileage: 11.57, Cyl: 8},
+  {Make: 'Honda', 'Fuel Type': 'Petrol', Horsepower: 351, Mileage: 7.96, Cyl: 8},
+  {Make: 'Hyundai', 'Fuel Type': 'Petrol', Horsepower: 191, Mileage: 11.83, Cyl: 3},
+  {Make: 'BMW', 'Fuel Type': 'Electric', Horsepower: 202, Mileage: 114.10, Cyl: 4},
+  {Make: 'Honda', 'Fuel Type': 'Electric', Horsepower: 199, Mileage: 89.11, Cyl: 3},
+  {Make: 'Chevrolet', 'Fuel Type': 'Electric', Horsepower: 208, Mileage: 104.86, Cyl: 6}
+];
+
+// Utilities
+const unique = arr => [...new Set(arr)];
+
+// Populate Data Table (Sample)
+const dataTbody = document.querySelectorAll('#dataTable tbody')[0];
+data.forEach(r=>{
+  const tr=document.createElement('tr');
+  // NOTE: Use r['Fuel Type'] to access the key with spaces
+  tr.innerHTML=`<td>${r.Make}</td><td>${r['Fuel Type']}</td><td>${r.Horsepower}</td><td>${r.Mileage}</td><td>${r.Cyl}</td>`;
+  dataTbody.appendChild(tr);
+});
+
+// Slicer UI setup
+const cyls = unique(data.map(d=>d.Cyl)).sort((a,b)=>a-b);
+const slicer = document.getElementById('slicerButtons');
+const allBtn = document.createElement('button'); allBtn.className='sbtn active'; allBtn.textContent='All'; allBtn.dataset.cyl='all'; slicer.appendChild(allBtn);
+cyls.forEach(c=>{const b=document.createElement('button'); b.className='sbtn'; b.textContent=c; b.dataset.cyl=c; slicer.appendChild(b);});
+
+let activeFilter='all';
+
+// Slicer event listener
+slicer.addEventListener('click', e=>{
+  if(e.target.tagName!=='BUTTON') return;
+  Array.from(slicer.querySelectorAll('button')).forEach(x=>x.classList.remove('active'));
+  e.target.classList.add('active');
+  activeFilter = e.target.dataset.cyl;
+  renderAll();
+});
+
+// Chart contexts
+const ctxAvg = document.getElementById('avgMileageChart').getContext('2d');
+const ctxCyl = document.getElementById('mileageByCyl').getContext('2d');
+const ctxHP = document.getElementById('hpScatter').getContext('2d');
+const ctxCnt = document.getElementById('countFuel').getContext('2d');
+let chartAvg, chartCyl, chartHP, chartCnt;
+
+// Compute Pivot Table data (Average Mileage by Fuel Type)
+function computePivot(filter){
+  const rows = filter === 'all' ? data : data.filter(d=>String(d.Cyl) === String(filter));
+  const byFuel = {};
+  // NOTE: Use r['Fuel Type'] to access the key with spaces
+  rows.forEach(r=>{ if(!byFuel[r['Fuel Type']]) byFuel[r['Fuel Type']]=[]; byFuel[r['Fuel Type']].push(r.Mileage); });
+  const result = Object.keys(byFuel).map(k=>({fuel:k, avg: byFuel[k].reduce((a,b)=>a+b,0)/byFuel[k].length}));
+  result.sort((a,b)=>b.avg-a.avg);
+  return result;
+}
+
+function renderAll(){
+  const pivot = computePivot(activeFilter);
+  const currentData = activeFilter === 'all' ? data : data.filter(d=>String(d.Cyl) === String(activeFilter));
+
+  // 1. Update Pivot Table
+  const pt = document.querySelector('#pivotTable tbody'); pt.innerHTML='';
+  pivot.forEach(r=>{ const tr=document.createElement('tr'); tr.innerHTML=`<td>${r.fuel}</td><td>${r.avg.toFixed(2)}</td>`; pt.appendChild(tr); });
+
+  // 2. Average Mileage by Fuel Type (Bar Chart)
+  const labelsAvg = pivot.map(p=>p.fuel);
+  const valuesAvg = pivot.map(p=>Number(p.avg.toFixed(2)));
+  if(chartAvg) chartAvg.destroy();
+  chartAvg = new Chart(ctxAvg, {type:'bar', data:{labels:labelsAvg, datasets:[{label:'Avg Mileage', data:valuesAvg, backgroundColor: 'rgba(12,123,123,0.7)'}]}, options:{plugins:{legend:{display:false}}, responsive:true}});
+
+  // 3. Mileage Distribution by Cylinders (Bar Chart - compares global averages)
+  const cylGroups = unique(data.map(d=>d.Cyl)).sort((a,b)=>a-b);
+  const cylAvgs = cylGroups.map(c=>{
+    const rows = data.filter(d=>d.Cyl===c);
+    if(rows.length===0) return 0;
+    return rows.reduce((a,b)=>a+b.Mileage,0)/rows.length;
+  });
+  // Highlight the active filter cylinder
+  const backgroundColorsCyl = cylGroups.map(c => String(c) === activeFilter ? 'rgba(124,58,237,1)' : 'rgba(124,58,237,0.7)');
+
+  const cylLabels = cylGroups.map(String);
+  const cylValues = cylAvgs.map(v=>Number(v.toFixed(2)));
+  if(chartCyl) chartCyl.destroy();
+  chartCyl = new Chart(ctxCyl, {type:'bar', data:{labels:cylLabels, datasets:[{label:'Avg Mileage by Cyl', data:cylValues, backgroundColor: backgroundColorsCyl}]}, options:{scales:{y:{min:0, max: Math.max(...cylValues) + 10}}, plugins:{legend:{display:false}}, responsive:true}});
+
+  // 4. HP vs Mileage scatter (filtered)
+  const scatterData = currentData.map(d=>({x:d.Horsepower,y:d.Mileage}));
+  if(chartHP) chartHP.destroy();
+  chartHP = new Chart(ctxHP, {type:'scatter', data:{datasets:[{label:'HP vs Mileage', data:scatterData, backgroundColor:'rgba(14,165,164,0.7)'}]}, options:{scales:{x:{title:{display:true,text:'Horsepower'}}, y:{title:{display:true,text:'Mileage (MPG)'}}}, responsive:true}});
+
+  // 5. Count by fuel (filtered)
+  const fuels = unique(data.map(d=>d['Fuel Type']));
+  const counts = fuels.map(f=> currentData.filter(d=>d['Fuel Type']===f).length );
+  if(chartCnt) chartCnt.destroy();
+  chartCnt = new Chart(ctxCnt, {type:'bar', data:{labels:fuels, datasets:[{label:'Count', data:counts, backgroundColor:'rgba(16,185,129,0.7)'}]}, options:{plugins:{legend:{display:false}}, responsive:true}});
+
+  // 6. Key Statistics
+  const keyStats = document.getElementById('keyStats');
+  const allValues = pivot.map(p=>p.avg);
+  const meanOfAvgs = allValues.length ? (allValues.reduce((a,b)=>a+b,0)/allValues.length).toFixed(2) : '-';
+  const filteredCylText = activeFilter !== 'all' ? ` for ${activeFilter}-cylinder cars` : '';
+
+  keyStats.innerHTML = `
+    <li>Top fuel type${filteredCylText}: ${pivot[0] ? pivot[0].fuel + ' (' + pivot[0].avg.toFixed(2) + ' MPG)' : '—'}</li>
+    <li>Bottom fuel type${filteredCylText}: ${pivot[pivot.length-1] ? pivot[pivot.length-1].fuel + ' (' + pivot[pivot.length-1].avg.toFixed(2) + ' MPG)' : '—'}</li>
+    <li>Mean of fuel-type averages${filteredCylText}: ${meanOfAvgs} MPG</li>
+  `;
+
+  // 7. Conclusions
+  const cons = document.getElementById('conclusionsList');
+  const top = pivot[0] ? `${pivot[0].fuel} tends to have the highest average mileage (${pivot[0].avg.toFixed(2)} MPG)` : 'No data';
+  const bottom = pivot[pivot.length-1] ? `${pivot[pivot.length-1].fuel} tends to have the lowest average mileage (${pivot[pivot.length-1].avg.toFixed(2)} MPG)` : 'No data';
+  const trend = 'Across the dataset, higher cylinder counts generally correspond to lower mileage, though Electric vehicles are clear outliers.';
+  cons.innerHTML = `<li>${top}</li><li>${bottom}</li><li>${trend}</li>`;
+}
+
+// Initial render
+renderAll();
+</script>
+</body>
+</html>
